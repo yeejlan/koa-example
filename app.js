@@ -6,17 +6,27 @@ var koa = require('koa');
 var app = koa();
 
 var config = require('./lib/config');
+var body_parser = require('./lib/body_parser');
 var router = require('./lib/router');
 
-/**load config**/
+//load config
 global.g_config = config.load(path.join(__dirname, 'config', app.env));
 
-/**load and dispatch actions**/
+//add data object/namespace to context
+app.use(function *(next){
+	this.data = {};
+	yield *next;	
+});
+
+//parse body
+app.use(body_parser());
+
+//load actions and dispatch
 router.loadActions(path.join(__dirname, 'controllers'));
 app.use(router.dispatch);
 
-console.log(app);
 
-app.listen(3000);
+var port = 3000;
+app.listen(port);
 
-console.log('listen on 3000');
+console.log('listen on ' + port);
