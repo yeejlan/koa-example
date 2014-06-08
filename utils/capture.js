@@ -1,4 +1,11 @@
 
+/**
+ * pass a function and capture the output of this function
+ *
+ * @param {function} fn
+ * @return {string}
+ * @api public
+**/
 exports.capture_stdout = function(fn) {
     var old_write = process.stdout.write
 	var output = '';

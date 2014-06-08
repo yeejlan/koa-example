@@ -1,6 +1,13 @@
 var co_body = require('co-body');
 
-//raw post data
+/**
+ * Retrun a thunk which gets raw post data
+ *
+ * @param {context.request} req
+ * @param {object} opts
+ * @return {thunk function} 
+ * @api public
+**/
 exports.raw = function(req, opts){
 	var _raw = require('raw-body');
 	req = req.req || req;
@@ -22,7 +29,14 @@ exports.raw = function(req, opts){
 	}
 };
 
-//application/json
+/**
+ * Retrun a thunk which parses json data
+ *
+ * @param {context.request} req
+ * @param {object} opts
+ * @return {thunk function} 
+ * @api public
+**/
 exports.json = function(req, opts){
 	req = req.req || req;
 	opts = opts || {};
@@ -30,7 +44,14 @@ exports.json = function(req, opts){
 	return co_body.json(req, opts);
 }
 
-//application/x-www-form-urlencoded
+/**
+ * Retrun a thunk which parses application/x-www-form-urlencoded data
+ *
+ * @param {context.request} req
+ * @param {object} opts
+ * @return {thunk function} 
+ * @api public
+**/
 exports.form = function(req, opts){
 	req = req.req || req;
 	opts = opts || {};
