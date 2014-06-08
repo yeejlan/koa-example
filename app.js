@@ -6,7 +6,6 @@ var koa = require('koa');
 var app = koa();
 
 var config = require('./lib/config');
-var body_parser = require('./lib/body_parser');
 var router = require('./lib/router');
 
 //load config
@@ -17,9 +16,6 @@ app.use(function *(next){
 	this.data = {};
 	yield *next;	
 });
-
-//parse body
-app.use(body_parser());
 
 //load actions and dispatch
 router.loadActions(path.join(__dirname, 'controllers'));

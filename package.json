@@ -6,6 +6,7 @@
   "dependencies": {
     "koa": "*",
     "co-body" : "*",
+    "raw-body" : "*",
     "ejs": "*",
     "ini": "*",
     "mysql": "*",

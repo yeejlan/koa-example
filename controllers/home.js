@@ -21,3 +21,21 @@ actions.context = function *() {
 
 	this.body = output;
 }
+
+//get form post data
+actions.post = function *() {
+	var self = this;
+	var body = require('../utils/body');
+	
+	var form = yield body.form(self);
+	this.body = form;	
+}
+
+//get raw post data
+actions.rawPost = function *() {
+	var self = this;
+	var body = require('../utils/body');
+	
+	var raw = yield body.raw(self);
+	this.body = raw;	
+}
