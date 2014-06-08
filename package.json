@@ -1,0 +1,14 @@
+{
+  "name": "koa-exmaple",
+  "description": "koa based web application demostration",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "koa": "*",
+    "ejs": "*",
+    "ini": "*",
+    "mysql": "*",
+    "lodash": "*",
+    "utils-merge" : "*"
+  }
+}
