@@ -37,5 +37,5 @@ actions.rawPost = function *() {
 	var body = require('../utils/body');
 	
 	var raw = yield body.raw(self);
-	this.body = raw;	
+	this.body = raw;
 }

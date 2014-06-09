@@ -1,14 +1,14 @@
 var co_body = require('co-body');
 
 /**
- * Retrun a thunk which gets raw post data
+ * Retrun a thunk which gets raw post data as binary
  *
  * @param {context.request} req
  * @param {object} opts
  * @return {thunk function} 
  * @api public
 **/
-exports.raw = function(req, opts){
+var raw = exports.raw = function(req, opts){
 	var _raw = require('raw-body');
 	req = req.req || req;
 	opts = opts || {};
@@ -16,7 +16,6 @@ exports.raw = function(req, opts){
 	// defaults
 	var len = req.headers['content-length'];
 	if (len) opts.length = ~~len;
-	opts.encoding = opts.encoding || 'utf8';
 	opts.limit = opts.limit || '5mb';
 
 	return function(done){
@@ -27,6 +26,20 @@ exports.raw = function(req, opts){
 			done(null, str);
 		});
 	}
+};
+
+/**
+ * Retrun a thunk which gets raw post data as utf8 encoded string
+ *
+ * @param {context.request} req
+ * @param {object} opts
+ * @return {thunk function} 
+ * @api public
+**/
+exports.rawString = function(req, opts){
+	opts = opts || {};
+	opts.encoding = opts.encoding || 'utf8';
+	return raw(req, opts);
 };
 
 /**
